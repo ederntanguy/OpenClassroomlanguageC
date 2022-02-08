@@ -4,13 +4,13 @@
 
 // prototype
 int lePGCD(int num1, int num2, int *PGCD);
-int calculeDelata(int a, int b, int c, int *delta);
-int calculeRacines(int delta, int a, int b, double *x1, double *x2);
+int calculeDelata(double a, double b, double c, double *delta);
+int calculeRacines(double delta, double a, double b, double *x1, double *x2);
 
 int main(int argc, char const *argv[])
 {
     int choix = 0, nombre1 = 0, nombre2=0, reponse = 0, recommencer = 1;
-    float division1 = 0, division2 = 0, repdivision = 0;
+    double division1 = 0, division2 = 0, repdivision = 0;
     while (recommencer == 1)
     {
         printf("Bienvenu dans la super calculatrice de Edern\n\n");
@@ -19,9 +19,9 @@ int main(int argc, char const *argv[])
         if (choix == 4)
         {
             printf("veulliez entrer deux nombres decimaux\n");
-            scanf("%f", &division1);
+            scanf("%lf", &division1);
             printf("diviser par\n");
-            scanf("%f", &division2);
+            scanf("%lf", &division2);
         } else if (choix == 7)
         {
         }
@@ -49,7 +49,7 @@ int main(int argc, char const *argv[])
         else if (choix == 4)
         {
             repdivision = division1 / division2;
-            printf("la reponse est %f\n", repdivision);
+            printf("la reponse est %.2f\n", repdivision);
         }
         else if (choix == 5)
         {
@@ -63,31 +63,31 @@ int main(int argc, char const *argv[])
         }
         else if (choix == 7)
         {
-            int a = 0, b = 0, c = 0; 
-            int delta = 0;
+            double a = 0, b = 0, c = 0; 
+            double delta = 0;
             double x1 = 0, x2 = 0;
 
             // demande des valeurs
             printf("calcule de votre equiation du second degrer\nVeuillez entrer en premier la valeur X au carré\n");
-            scanf("%d",&a); 
+            scanf("%lf",&a); 
             printf("veuillez entrer la valeur de X\n");
-            scanf("%d",&b);
+            scanf("%lf",&b);
             printf("veuillez entrer la valeur de l'unité\n");
-            scanf("%d",&c);
+            scanf("%lf",&c);
 
             calculeDelata(a,b,c,&delta); // calcule du delta
 
-            printf("delta = %d\n", delta);
+            printf("delta = %.2lf\n", delta);
 
             if (delta >= 0) // permet d'enelver le cas de delta negatif
             {
                 calculeRacines(delta,a,b,&x1,&x2);
                 if (x1 == x2) // si x1 = x2 alors il n'y qu'une solution
                 {
-                    printf("votre equation possede une seule solution x = %lf\n", x1);
+                    printf("votre equation possede une seule solution x = %.2lf\n", x1);
                 } else
                 {
-                    printf("votre equation possede deux solution x1 = %lf et x2 = %lf\n", x1, x2);
+                    printf("votre equation possede deux solution x1 = %.2lf et x2 = %.2lf\n", x1, x2);
                 }
 
             } else
@@ -122,13 +122,13 @@ int lePGCD(int num1, int num2, int *PGCD)
     return 0;
 }
 
-int calculeDelata(int a, int b, int c, int *delta)
+int calculeDelata(double a, double b, double c, double *delta)
 {
     *delta = pow(b,2)-(4*a*c); // fonction puissance
     return 0;
 }
 
-int calculeRacines(int delta, int a, int b, double *x1, double *x2)
+int calculeRacines(double delta, double a, double b, double *x1, double *x2)
 {
     if (delta == 0) 
     {
